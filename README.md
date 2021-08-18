@@ -1,3 +1,7 @@
-# Kubernetes
+# Blogs
 
-[Kubernetes Cheat Sheet](Kubernetes/CheatSheet.md)
+[Decrease Windows Containers Size](Blogs/WindowsDockerSize.md)
+
+# Cheat Sheets
+
+[Kubernetes](CheatSheets/Kubernetes.md)

@@ -73,7 +73,6 @@ aksnpwin1000008                  Ready    agent   48d   v1.20.7
 aksnpwin100000a                  Ready    agent   67d   v1.20.7
 aksnpwin100000b                  Ready    agent   67d   v1.20.7
 ```
-The status column contains the current status of the node. In the above example all nodes are ready.
 
 List node usage:
 ```
