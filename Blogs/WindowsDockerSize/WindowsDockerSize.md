@@ -1,10 +1,10 @@
-# Introduction
+# Decrease Windows Container Size
 
 We heavily rely on Windows containers on our Kubernetes cluster. Major downsides are the size and boot times of the pods running on Windows. We investigated how we could decrease the image size and boot times.
 
 The container we are working on in this example is our reporting service. This service depends on Crystal Reports.
 
-# Windows Containers Flavours
+# Windows Container Flavours
 
 You have to choose the correct base image that suits your needs. In the table below, I listed the main images to choose from. There are several others, but they are all build on top of these.
 
