@@ -50,7 +50,7 @@ COPY --from=fullWindows /windows/syswow64/oledlg.dll /windows/syswow64/oledlg.dl
 On my local machine this worked and decreased the image size with 9Gb! Very cool to see this kind of improvement, unfortunately we cannot use it but more about that later.
 ![Results attempt 1](ImageSizeCompare1.png)
 
-We need to run the container on Azure Kubernetes and the Windows nodes are running on version 2019. The host OS doesn't support later versions of the guest OS to run, so we cannot benefit from the latest size reduction.
+We need to run the container on Azure Kubernetes and the Windows nodes are running on version 2019. In the image below the version of Windows on the node VM is visible. The host OS doesn't support later versions of the guest OS to run, so we cannot benefit from the latest size reduction. More information on version compatibility can be found here: https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility?tabs=windows-server-20H2%2Cwindows-10-20H2
 ![Host OS](NodeVersion.png)
 
 Making a direct comparison from the current Windows Image and Windows Server Core can still save 3Gb:
