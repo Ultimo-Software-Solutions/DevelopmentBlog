@@ -13,6 +13,7 @@ At Ultimo we use many tools and services to build and host our application. Belo
 | GitLab                     | Merge requests & deployment |
 | Docker                     | Building docker images |
 | JS Hint                    | Static code analisys for javascript |
+| Xamarin                    | Cross-platform mobile app development with .Net |
 | Karma                      | Javascript test runner |
 | MSTest                     | .Net test runner |
 | NodeJS                     | Host for various build processes |
