@@ -30,7 +30,7 @@ The dasboard will start showing data after a few hours. You can drill down and d
 
 # Resolving Waits
 
-In SQL Analytics we noticed that most waits where caused by parallelism. By default SQL Server has a max degree of parallelism set to the number of available cores, in our case 32. This can be changed by setting the MAXDOP setting top a different value. In several publications it is recommended to lower this value:
+In SQL Analytics we noticed that most waits where caused by parallelism. By default SQL Server has a max degree of parallelism set to the number of available cores, in our case 32. This can be changed by setting the MAXDOP setting top a different value. In several publications we found it is recommended to lower this value:
 https://techcommunity.microsoft.com/t5/azure-sql/changing-default-maxdop-in-azure-sql-database-and-azure-sql/ba-p/1538528#:~:text=Executive%20Summary,0%20(unlimited)%20to%208
 
 The queries we use in our application have little to no benefit from using parellelism. We tried setting MAXDOP to 1 for all databases with the following query:
@@ -38,6 +38,6 @@ The queries we use in our application have little to no benefit from using parel
 ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 1
 ```
 
-The result was that the waits and timeouts are now resolved.
+The result was that the waits and timeouts are now resolved. The red marker is before changing MAXDOP, the green marker after.
 
 ![MaxDop 2 vs 1](MaxDop2vs1.png)

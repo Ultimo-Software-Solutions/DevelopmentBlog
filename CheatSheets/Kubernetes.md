@@ -1,4 +1,4 @@
-# Connect to Azure Kubernetes
+ # Connect to Azure Kubernetes
 
 Download and install azure command line interface (AzureCLI) from: https://aka.ms/installazurecliwindows 
 
@@ -116,6 +116,11 @@ Drain node (this will cause all pods to be rescheduled to another node):
 Delete node from nodepool:
 ```
 > kubectl delete node [nodename]
+```
+
+List pods running on a node:
+```
+> kubectl get pods --all-namespaces -o wide --field-selector spec.nodeName=[nodename]
 ```
 
 # Deployment management
