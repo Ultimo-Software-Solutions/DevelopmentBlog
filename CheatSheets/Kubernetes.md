@@ -184,6 +184,24 @@ Copy local file to pod:
 > kubectl cp /tmp/bar [namespace]/[pod]:tmp/foo
 ```
 
+Create dump from .Net 5 (Linux):
+```
+Install wget, since we use this to directly download gcdump
+> kubectl exec [pod] -n [namespace] -- bash -c "apt-get update && apt-get install wget -y"
+
+Download dotnet-gcdump binaries directly, without using dotnet tool (https://docs.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-gcdump)
+> kubectl exec [pod] -n [namespace] -- wget https://aka.ms/dotnet-gcdump/linux-x64
+
+Allow exection for the downloaded binary
+> kubectl exec [pod] -n [namespace] -- chmod +x ./linux-x64
+
+Generate dump for process (get process id using ps -A)
+> kubectl exec [pod] -n [namespace] -- ./linux-x64 collect -p 1
+
+Copy file from pod to local (use filename from output of previous command)
+> kubectl cp [namespace]/[pod]:/app/bin/20210831_122534_1.gcdump dump.gcdump
+```
+
 # Debugging Windows Containers
 
 Open interactive command shell:
@@ -191,7 +209,7 @@ Open interactive command shell:
 > kubectl exec [pod] -n [namespace] -i -- cmd
 ```
 
-Create dump from .Net IIS application:
+Create dump from .Net IIS application (Windows):
 ```
 List application pools
 > %systemroot%\system32\inetsrv\AppCmd.exe list apppool
