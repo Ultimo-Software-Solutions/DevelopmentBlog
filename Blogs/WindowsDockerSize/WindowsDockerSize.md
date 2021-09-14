@@ -15,7 +15,7 @@ You have to choose the correct base image that suits your needs. In the table be
 | microsoft/windowsservercore  | Medium size version, full Windows without the unnecessary libraries |
 | microsoft/nanoserver         | Very light version of Windows that is only usefull for new .Net Core/.Net 5 applications |
 
-Except from the nanoserver image, all of the Windows images are quite large. But to be honest, I do not really see the point of this image. The nanoserver image can only be used if you have no dependencies to the Windows subsystem and cannot run .Net Framework applications. In this scenario you are probably better off using a Linux based image, that is even lighter and more stable.
+Except from the nanoserver image, all of the Windows images are quite large. But to be honest, I do not really see the point of the nanoserver image. This image can only be used if you have no dependencies to the Windows subsystem and cannot run .Net Framework applications. In this scenario you are probably better off using a Linux based image, that is even lighter and more stable.
 
 Microsoft is investing a lot in optimizing Windows images. In recent articles from Microsoft (e.g. https://docs.microsoft.com/en-us/windows-server/get-started/whats-new-in-windows-server-2004-20h2) they have shown great improvements in decreasing the image sizes, especially for Server Core images. The size went down from ~11 GB to ~4 GB in the latest few versions.
 
