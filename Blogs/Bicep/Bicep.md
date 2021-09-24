@@ -1,6 +1,8 @@
 # GitOps - Infrastructure as Code using Bicep
 
-The infrastructure required to run Ultimo on Azure was created with powershell. This worked very well for the initial setup, but changes to the platform are often done manually. Because of this, it is harder to have a proper process that allows reviewing and gatekeeping any changes to the platform. The GitOps principle is that the entire system is described declaratively, just like other source code. To improve on this, we wanted a definition that describes the infrastructure and an automated process to apply the changes. We looked into various technologies like 'Pulumi', 'Terraform', 'ARM' and 'Bicep'. In this exercise we will be using Bicep to define the infrastructure.
+The infrastructure required to run Ultimo on Azure was created with powershell. This worked very well for the initial setup, but changes to the platform are often done manually. Because of this, it is harder to have a proper process that allows reviewing and gatekeeping any changes to the platform. The GitOps principle is that the entire system is described declaratively, just like other source code. To improve on this, we wanted a definition that describes the infrastructure and an automated process to apply the changes. We looked into various technologies like 'Pulumi', 'Terraform', 'ARM' and 'Bicep'.
+
+In this article we will be using Bicep to describe an existing infrastructure.
 
 # Setup Bicep development environment
 
@@ -75,6 +77,21 @@ If you are confident enough, now it is time to deploy. Since I created multiple 
 ```
 > az deployment sub create --location $location --template-file $bicepFile --parameters $parameterFile
 ```
+
+# Comparison to Terraform and Pulumi
+
+Bicep is has it's problems. But what about the direct competition? How does Bicep compare to Terraform and Pulumi? In the table below I made a high level comparison.
+
+|                     | ARM         | Bicep       | Terraform   | Pulumi
+| ------------------- | ------------|-------------|-------------|------------
+| Language            | json/yaml   | DSL         | HCL         | C#
+| State               | Azure       | Azure       | State file  | State file
+| Owner               | Microsoft   | Microsoft   | Terraform   | Pulumi
+| License             | Free to use | Free to use | Free to use | Paid
+
+Bicep/ARM are managed by Microsoft. You will get day-0 support for Azure services, whereas for Terraform and Pulumi you are dependent on a third party. Pulumi uses C# as language, personally I prefer this over the others. Both Terraform and Pulumi claim to support multi-cloud. This is true, but you need to write specific code per cloud provider. The most important comparison for us is how the state is handled. ARM/Bicep compares directly against Azure, while the others use a state file. I do think that Terraform and Pulumi have more maturity than Bicep.
+
+Is Bicep better than the competition? Maybe. If it matures, probably.
 
 # References
 
