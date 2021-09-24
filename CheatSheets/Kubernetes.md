@@ -9,7 +9,7 @@ Install az aks by running from command line:
 > az aks install-cli 
 ```
 
-Add kubectl to path through command line (with administrator rights):
+Add kubectl to your PATH through command line (with administrator rights):
 ```
 > setx -m PATH "%PATH%;C:\Users\<username>\.azure-kubelogin" 
 > setx -m PATH "%PATH%;C:\Users\<username>\.azure-kubectl" 
@@ -184,7 +184,7 @@ Copy local file to pod:
 > kubectl cp /tmp/bar [namespace]/[pod]:tmp/foo
 ```
 
-Create dump from .Net 5 (Linux):
+Create dump from .NET 5 (Linux):
 ```
 Install wget, since we use this to directly download gcdump
 > kubectl exec [pod] -n [namespace] -- bash -c "apt-get update && apt-get install wget -y"
@@ -209,7 +209,7 @@ Open interactive command shell:
 > kubectl exec [pod] -n [namespace] -i -- cmd
 ```
 
-Create dump from .Net IIS application (Windows):
+Create dump from .NET IIS application (Windows):
 ```
 List application pools
 > %systemroot%\system32\inetsrv\AppCmd.exe list apppool

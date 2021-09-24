@@ -13,9 +13,9 @@ You have to choose the correct base image that suits your needs. In the table be
 | microsoft/windows            | Full version of Windows, largest image. Use if you have dependencies  |
 | microsoft/windowsserver      | Full version of Windows, slightly smaller then microsoft/windows |
 | microsoft/windowsservercore  | Medium size version, full Windows without the unnecessary libraries |
-| microsoft/nanoserver         | Very light version of Windows that is only useful for new .Net Core/.Net 5 applications |
+| microsoft/nanoserver         | Very light version of Windows that is only useful for new .NET Core/.NET 5 applications |
 
-Except from the nanoserver image, all of the Windows images are quite large. But to be honest, I do not really see the point of the nanoserver image. This image can only be used if you have no dependencies to the Windows subsystem and cannot run .Net Framework applications. In this scenario you are probably better off using a Linux based image, that is even lighter and more stable.
+Except from the nanoserver image, all of the Windows images are quite large. But to be honest, I do not really see the point of the nanoserver image. This image can only be used if you have no dependencies to the Windows subsystem and cannot run .NET Framework applications. In this scenario you are probably better off using a Linux based image, that is even lighter and more stable.
 
 Microsoft is investing a lot in optimizing Windows images. In recent articles from Microsoft (e.g. https://docs.microsoft.com/en-us/windows-server/get-started/whats-new-in-windows-server-2004-20h2) they have shown great improvements in decreasing the image sizes, especially for Server Core images. The size went down from ~11 GB to ~4 GB in the latest few versions.
 
@@ -27,13 +27,13 @@ Microsoft is investing a lot in optimizing Windows images. In recent articles fr
 | microsoft/windowsservercore:1909  | 5 GB  |
 | microsoft/windowsservercore:2004  | 4 GB  |
 
-We where still running the full Windows images, so we wanted to benefit from this.
+We were still running the full Windows images, so we wanted to benefit from this.
 
 # Migrate to Server Core
 
-The container we needed to migrate was depending on some legacy components. In this case we are running Crystal Reports. Crystal only was missing one dependency to OLE User Interface Support. This was resolved by copying the required dll's from the full Windows image.
+The container we needed to migrate was depending on some legacy components. In this case we are running Crystal Reports. Crystal only was missing one dependency to OLE User Interface Support. This was resolved by copying the required DLLs from the full Windows image.
 
-The first attempt to work around the dependency issues was to copy the dll's from the full Windows image:
+The first attempt to work around the dependency issues was to copy the DLLs from the full Windows image:
 ```
 FROM mcr.microsoft.com/windows:1809 as fullWindows
 FROM mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-20H2

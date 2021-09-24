@@ -30,14 +30,13 @@ At Ultimo we use many tools and services to build and host our application. Belo
 | Azure SQL Elastic Pool     | Database host |
 | Azure VNet                 | Networking |
 | Azure Blob Storage         | Storage |
-| Azure Blob Storage         | Storage |
 | Azure Monitor              | Monitor Azure resource health |
 | Azure Application Insights | Monitor application and performance |
 | PagerDuty                  | Automated incident response |
 
 | Language                 | Description |
 | ------------------------ | ----------- |
-| .Net 5                   | Backend & deployment |
+| .NET 5                   | Backend & deployment |
 | Javascript               | Frontend |
 | Powershell               | Deployment |
 | Sass                     | CSS Stylesheet compiler |

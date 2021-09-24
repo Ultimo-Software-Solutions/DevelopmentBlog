@@ -1,6 +1,6 @@
 # GitOps - Infrastructure as Code using Bicep
 
-The infrastructure required to run Ultimo on Azure is created with powershell. This worked very well for the initial setup, but changes to the platform are often done manually. Because of this, it is harder to have a proper process that allows reviewing and gatekeeping any changes to the platform. The GitOps principle is that the entire system is described declaratively, just like other source code. To improve on this, we wanted a definition that describes the infrastructure and an automated process to apply the changes. We looked into various techniques like 'Pulumi', 'Terraform', 'ARM' and 'Bicep'. In this exercise we will be using Bicep to define the infrastructure.
+The infrastructure required to run Ultimo on Azure was created with powershell. This worked very well for the initial setup, but changes to the platform are often done manually. Because of this, it is harder to have a proper process that allows reviewing and gatekeeping any changes to the platform. The GitOps principle is that the entire system is described declaratively, just like other source code. To improve on this, we wanted a definition that describes the infrastructure and an automated process to apply the changes. We looked into various technologies like 'Pulumi', 'Terraform', 'ARM' and 'Bicep'. In this exercise we will be using Bicep to define the infrastructure.
 
 # Setup Bicep development environment
 
@@ -10,16 +10,16 @@ Install Bicep through Azure CLI.
 > az bicep upgrade
 ```
 
-Add Bicep install directory to path. It is installed in 'C:\\Users\\[user]\\.azure\\bin'.
+Add the Bicep install directory to your PATH. It is installed in 'C:\\Users\\[user]\\.azure\\bin'.
 
 I recommend using VS Code for editing Bicep files. Optionally install the Bicep VS Code extensions. This extension is pretty good, it has syntax highlighting, shows basic errors and has intellisense.
 
 # Export ARM template and convert
 
-All resources on Azure are internally described in ARM templates. ARM is the internal infrastructure definition used to describe the desired state. Any modification made using either the portal or using script will result in a modification to these ARM templates. If you logon into the resource explorer, you can view the current state (https://resources.azure.com/).  
+All resources on Azure are internally described in ARM templates. ARM is the internal infrastructure definition used to describe the desired state. Any modification made using either the Azure portal or using script will result in a modification to these ARM templates. If you use the Azure Resource Explorer, you can view the current state (https://resources.azure.com/).  
 ![ResourceExplorer](ResourceExplorer.png)
 
-It is possible to export any existing resource from azure to an ARM template.
+It is possible to export any existing resource from Azure to an ARM template.
 ```
 > az group export --name "[ResourceGroupName]" > [ResourceGroupName].json
 ```
@@ -27,14 +27,14 @@ It is possible to export any existing resource from azure to an ARM template.
 In my case, I ended up with a directory containing templates for all resources groups.  
 ![ArmResources](ArmResources.png)
 
- This can be then converted into a Bicep templates. It will take the input file and generates a file with a .bicep extensions.
+An ARM template can then be converted into a Bicep template. It will take the input file and generate a file with a .bicep extension.
 ```
 > az bicep decompile --file [ResourceGroupName].json
 ```
 
 # Modify generated Bicep template
 
-The decompiled Bicep file is not ready to be used yet. It is a good starting point, but it will contain a lot of noise that is not needed. It also generates variables that you probably want to change or at least rename.  
+The decompiled Bicep file is not ready to be used yet. It is a good starting point, but it will contain a lot of noise that is not needed. It also generates variables that you'll probably want to change or at least rename.  
 ![CleanUpBicep](CleanUpBicep.png)
 
 My approach was to start by converting the Bicep files into generic modules that can be reused. Then make a main.bicep with a parameter file so it can be used to deploy multiple instances.  
@@ -47,7 +47,7 @@ I am not going to describe all the details on how to create clean Bicep files. A
 
 # Dry run Bicep to predict changes
 
-There is a built-in function to predict changes that will be made if you deploy the template. To do this, use the what-if option.
+There is a built-in function to predict the changes that will be made if you deploy the template. To do this, use the what-if option.
 ```
 > az deployment sub what-if --location $location --template-file $bicepFile --parameters $parameterFile
 ```
@@ -62,16 +62,16 @@ This would have been very cool, if the output was reliable. Unfortunately, this 
 Another thing that you should be aware of, is that resources that are removed from the Bicep template are not always deleted from Azure. These resources are then shown as ignored in the output of what-if. For me, this is not really a bad thing. It is a little unpredictable at times. For example; databases in SqlServer are ignored when missing in the template, but databases in a failover group will be removed.  
 ![Ignored](AzDeploymentWhatIfIgnored.png)
 
-Another thing I discovered is that what-if sometimes throw errors with very poor message. For example; if you create a privateDnsZoneGroups with a very long name, it will throw a DeploymentWhatIfResourceInvalidResponse message without any details. It took forever to find out what caused it, especially since the deploy ignored the resource without any error. Hopefully this will be improved upon in the future. Until then, I will make sure to run what-if often to detect issues early on.
+Another thing I discovered is that what-if sometimes throw errors with a very poor message. For example; if you create a privateDnsZoneGroups with a very long name, it will throw a DeploymentWhatIfResourceInvalidResponse message without any details. It took forever to find out what caused it, especially since the deploy ignored the resource without any error. Hopefully this will be improved upon in the future. Until then, I will make sure to run what-if often to detect issues early on.
 
-# Visualize template
+# Visualise template
 
-I am using Visual Studio Code with the Bicep extensions. The most important features are the syntax highlighting and intellisense. One nice to have I want to show is the built-in visualizer. There is a small button on the top left corner, highlighted in the image below, that toggles the visualization of the template. It is not perfect, but depending on how you structured your modules it can be helpful. Dependencies within a module are pretty accurate. Since I do not use output properties to define dependencies between modules, these are missing. It will visualize dependencies that are defined using dependsOn.  
+I am using Visual Studio Code with the Bicep extensions. The most important features are the syntax highlighting and intellisense. One nice to have I want to show is the built-in visualiser. There is a small button on the top left corner, highlighted in the image below, that toggles the visualisation of the template. It is not perfect, but depending on how you structured your modules it can be helpful. Dependencies within a module are pretty accurate. Since I do not use output properties to define dependencies between modules, these are missing. It will visualise dependencies that are defined using dependsOn.  
 ![Visualize](Visualize.png)
 
 # Deploy Bicep to azure
 
-If you are confident enough, now it is time to deploy. Since I create multiple resource groups, the deployment is done on subscription level.
+If you are confident enough, now it is time to deploy. Since I created multiple resource groups, the deployment is done on the subscription level.
 ```
 > az deployment sub create --location $location --template-file $bicepFile --parameters $parameterFile
 ```

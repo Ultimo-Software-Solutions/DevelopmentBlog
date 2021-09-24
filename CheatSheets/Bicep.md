@@ -6,7 +6,7 @@ Install bicep through Azure CLI.
 > az bicep upgrade
 ```
 
-Add bicep install directory to path. It is installed in 'C:\\Users\\[user]\\.azure\\bin'.
+Add the bicep install directory to your PATH. It is installed in 'C:\\Users\\[user]\\.azure\\bin'.
 Optionally install the bicep VS Code extensions.
 
 # Export template
