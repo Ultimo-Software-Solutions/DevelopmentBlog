@@ -1,17 +1,17 @@
-# Introduction
+# Stable Selenium Tests
 
-At Ultimo we stive to test as much of the application as possible, automatically. This is needed because it is not possible to do it all manually. Most of the code is tested using using unit tests that either test the backend or the client code. These tests are reliable and reasonably fast.
+At Ultimo we strive to test as much of the application as possible, automatically. This is needed because it is not feasible to do it all manually. Most of the code is tested using unit tests that either test the backend or the client code. These tests are reliable and reasonably fast.
 The challenge was to also test the interaction between the client and the server. We decided to use Selenium to write integration tests that run on the user interface.
 
 # Selenium Tests
 
 Writing unit tests that use the user interface to interact with the application can be very challenging. The test has to behave like a human would do. This includes waiting for pages to load or animations to complete. Another challenge is to write these tests in such a way that it runs reliable and keeps working after UI changes.
 
-Selenium offers and API to interact with the browser. The problem is that is you start using Selenium directly, the tests become very complex very quickly. Also, as your test set is growing, they probably start becoming more unstable. Another downside is that writing tests using selenium requires a lot of technical knowlegde. At Ultimo we wanted to enable testers to write tests as well.
+Selenium offers and API to interact with the browser. The problem is that is you start using Selenium directly, the tests become very complex very quickly. Also, as your test set is growing, they probably start becoming more unstable. Another downside is that writing tests using selenium requires a lot of technical knowledge. At Ultimo we wanted to enable testers to write tests as well.
 
 # Test Structure
 
-We decided to start by designing the test code itself. The goal was to make it very straight forward. We ignored all code that is probably required to synchronize the browser state. An example of how we currently write tests is below.  
+We decided to start by designing the test code itself. The goal was to make it very straight forward. We ignored all code that is required to synchronize the browser state. An example of how we currently write tests is below.  
 ![DialogTest](DialogTest.png)
 
 The tests are written in c#, but in such a way that our test crew can create their own.
@@ -21,7 +21,7 @@ The tests are written in c#, but in such a way that our test crew can create the
 The test structure we use is not invented by us. We used the 'Page Object Model' with a fluent interface as reference design. The low-level logic is hidden in the page classes. In these classes we switch to the correct context, use css selectors and have the proper waits.  
 ![PageMessageBox](PageMessageBox.png)
 
-This not only helps by keeping the tests itself readable, but also helps when we need to make a fix to any low-level logic.
+This structure helps with keeping the tests readable, but also helps when we need to fix any low-level logic.
 
 # Test Stability
 
@@ -39,12 +39,12 @@ In the test framework we can now use this to create reliable waits. We created a
 ![WaitUntilUltimoIsNotBusy](WaitUntilUltimoIsNotBusy.png)  
 ![UltimoIsNotBusy](UltimoIsNotBusy.png)
 
-The custom wait code allowed us to greatly reduce the flackyness of the tests. Other then this, we also made some small changes:  
+The custom wait code allowed us to greatly reduce the flakiness of the tests. Other then this, we also made some small changes:  
 | Change              | Description
 | ------------------- | ------------------ 
-| Element id's        | We added meaningfull id's to stratigic elements. We don't need them in javascript, but it helped for selecting the correct element.
+| Element id's        | We added meaningful id's to strategic elements. We don't need them in javascript, but it helped for selecting the correct element.
 | Window id's         | Unfortunately we sometimes need an iframe. We added markers to find the correct iframe, or move to the most outer frame.
-| Ultimo.Ajax         | All ajax calls are done through our one fascade class. No direct calls to jQuery or other libraries. This allows injecting our custom code.
+| Ultimo.Ajax         | All ajax calls are done through our one facade class. No direct calls to jQuery or other libraries. This allows injecting our custom code.
 
 # References
 

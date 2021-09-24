@@ -1,4 +1,4 @@
- # Connect to Azure Kubernetes
+# Connect to Azure Kubernetes
 
 Download and install azure command line interface (AzureCLI) from: https://aka.ms/installazurecliwindows 
 
@@ -9,7 +9,7 @@ Install az aks by running from command line:
 > az aks install-cli 
 ```
 
-Add kubectl to path trought command line (with administrator rights):
+Add kubectl to path through command line (with administrator rights):
 ```
 > setx -m PATH "%PATH%;C:\Users\<username>\.azure-kubelogin" 
 > setx -m PATH "%PATH%;C:\Users\<username>\.azure-kubectl" 
@@ -233,9 +233,9 @@ Copy file from pod to local:
 > kubectl cp [namespace]/[pod]:c:\procdump.zip procdump.zip
 ```
 
-# Troublesshoot nginx ingress controller
+# Troubleshoot nginx ingress controller
 
-Download ngingx controller config
+Download nginx controller config
 ```
-> kubectl exec -it -n [ngingxnamespace] [nginxpod] -- cat /etc/nginx/nginx.conf 
+> kubectl exec -it -n [nginxnamespace] [nginxpod] -- cat /etc/nginx/nginx.conf 
 ```

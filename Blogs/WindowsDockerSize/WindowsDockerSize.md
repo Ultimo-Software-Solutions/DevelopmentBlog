@@ -13,7 +13,7 @@ You have to choose the correct base image that suits your needs. In the table be
 | microsoft/windows            | Full version of Windows, largest image. Use if you have dependencies  |
 | microsoft/windowsserver      | Full version of Windows, slightly smaller then microsoft/windows |
 | microsoft/windowsservercore  | Medium size version, full Windows without the unnecessary libraries |
-| microsoft/nanoserver         | Very light version of Windows that is only usefull for new .Net Core/.Net 5 applications |
+| microsoft/nanoserver         | Very light version of Windows that is only useful for new .Net Core/.Net 5 applications |
 
 Except from the nanoserver image, all of the Windows images are quite large. But to be honest, I do not really see the point of the nanoserver image. This image can only be used if you have no dependencies to the Windows subsystem and cannot run .Net Framework applications. In this scenario you are probably better off using a Linux based image, that is even lighter and more stable.
 
@@ -119,4 +119,4 @@ reg import c:\registries\FontLink.reg
 Ultimo.Services.ServiceHost.ReportService.exe /docker
 ```
 
-We tried registring the fonts in the dockerfile itself, but for some reason this doesn't work in combindation with the used image versions. I do not understand why, please let me know if you have the answer to this!
+We tried registering the fonts in the dockerfile itself, but for some reason this doesn't work in combination with the used image versions. I do not understand why, please let me know if you have the answer to this!
