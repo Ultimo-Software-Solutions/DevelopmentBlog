@@ -6,13 +6,13 @@ In this article we will be using Bicep to describe an existing infrastructure.
 
 # Setup Bicep development environment
 
-Install Bicep through Azure CLI.
+If you are familiar with Azure CLI, setting up your Bicep development environment is easy. Install Bicep through Azure CLI.
 ```
 > az bicep install
 > az bicep upgrade
 ```
 
-Add the Bicep install directory to your PATH. It is installed in 'C:\\Users\\[user]\\.azure\\bin'.
+You need to manually add the Bicep install directory to your PATH. It is installed in 'C:\\Users\\[user]\\.azure\\bin'.
 
 I recommend using VS Code for editing Bicep files. Optionally install the Bicep VS Code extensions. This extension is pretty good, it has syntax highlighting, shows basic errors and has intellisense.
 
@@ -73,7 +73,7 @@ I am using Visual Studio Code with the Bicep extensions. The most important feat
 
 # Deploy Bicep to azure
 
-If you are confident enough, now it is time to deploy. Since I created multiple resource groups, the deployment is done on the subscription level.
+If you are confident enough, now it is time to deploy. Since I created multiple resource groups, the deployment is done on the subscription level. The result is a consistent configuration. No missing firewall settings and the naming is consistent.
 ```
 > az deployment sub create --location $location --template-file $bicepFile --parameters $parameterFile
 ```
