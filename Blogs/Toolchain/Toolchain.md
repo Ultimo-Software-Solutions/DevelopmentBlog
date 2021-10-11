@@ -22,7 +22,7 @@ At Ultimo we use many tools and services to build and host our application. Belo
 | SonarQube                  | Static code analysis for javascript & c# |
 | StyleCop                   | Static code analysis for c# |
 | Jenkins                    | Build & release |
-| Computest                  | External vulnerability test |
+| Bicep                      | Domain Specific Language for deploying Azure resources |
 | Helm                       | Kubernetes deployment |
 | Ubuntu                     | OS used in Linux containers |
 | Windows                    | OS used in Windows containers |
