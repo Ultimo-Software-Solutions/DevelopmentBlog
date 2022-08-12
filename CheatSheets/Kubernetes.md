@@ -239,3 +239,9 @@ Download nginx controller config
 ```
 > kubectl exec -it -n [nginxnamespace] [nginxpod] -- cat /etc/nginx/nginx.conf 
 ```
+
+# Windows node compatibility
+
+What Windows node versions is supported per Kubernetes version:
+https://kubernetes.io/docs/setup/production-environment/windows/intro-windows-in-kubernetes/#supported-functionality-and-limitations
+

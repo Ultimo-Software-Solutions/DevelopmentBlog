@@ -7,6 +7,7 @@
 [Decrease Windows Container Size](Blogs/WindowsDockerSize/WindowsDockerSize.md)  
 [Performance Azure SQL Elastic Pool - MaxDop](Blogs/ElasticPoolPerformanceMaxDop/ElasticPoolPerformanceMaxDop.md)  
 [Robust Automated UI Testing with Selenium](Blogs/Selenium/Selenium.md)  
+[Dangling Blobs](Blogs/DanglingBlobs/DanglingBlobs.md)
 
 # Cheat Sheets
 
