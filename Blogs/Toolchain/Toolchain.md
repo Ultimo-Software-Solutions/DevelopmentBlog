@@ -36,7 +36,7 @@ At Ultimo we use many tools and services to build and host our application. Belo
 
 | Language                 | Description |
 | ------------------------ | ----------- |
-| .NET 5                   | Backend & deployment |
+| .NET 6                   | Backend & deployment |
 | Javascript               | Frontend |
 | Powershell               | Deployment |
 | Sass                     | CSS Stylesheet compiler |
